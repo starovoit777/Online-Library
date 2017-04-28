@@ -1,4 +1,4 @@
-# spring3MVC
+# spring MVC
 
 
 For starting project: 
