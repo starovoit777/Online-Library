@@ -2,11 +2,16 @@ package com.ss.ch.dao.impl;
 
 import com.ss.ch.dao.UserDao;
 import com.ss.ch.domain.User;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Micro on 4/24/2017.
@@ -39,6 +44,13 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
     @Override
     public User getById(int id) {
         return getHibernateTemplate().get(User.class, id);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        List<User> users;
+        users = (List<User>) this.getHibernateTemplate().find("from User");
+        return users;
 
     }
 }

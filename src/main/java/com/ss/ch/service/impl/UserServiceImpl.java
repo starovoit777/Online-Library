@@ -6,6 +6,8 @@ import com.ss.ch.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Micro on 4/23/2017.
  */
@@ -19,7 +21,6 @@ public class UserServiceImpl implements UserService {
         userDao.save(entity);
     }
 
-
     public void update(User entity) {
         userDao.update(entity);
     }
@@ -30,5 +31,10 @@ public class UserServiceImpl implements UserService {
 
     public User getById(int id) {
         return  userDao.getById(id);
+    }
+
+    @Override
+    public List<User> findAllUsers() {
+        return  userDao.findAllUsers();
     }
 }

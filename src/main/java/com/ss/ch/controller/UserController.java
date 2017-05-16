@@ -10,28 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class MainController {
+public class UserController {
 
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String printWelcome() {
-        return "index";
-
-    }
 
 
-
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public String printWelcome(ModelMap model) {
-//        Employee employee = employeeService.getEmployeeById(1);
-//        model.addAttribute("msg", "Andrew  " + employee.getId() + " " + employee.getName());
-//        return "login";
-//
-//    }
-
-    @RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
     public ModelAndView hello(@PathVariable("name") String name) {
         ModelAndView model = new ModelAndView();
         model.setViewName("hello");
