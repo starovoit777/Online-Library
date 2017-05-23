@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class EmployeeDAOImpl extends HibernateDaoSupport implements EmployeeDAO {
@@ -46,5 +48,10 @@ public class EmployeeDAOImpl extends HibernateDaoSupport implements EmployeeDAO 
     @Override
     public Employee getById(int id) {
         return getHibernateTemplate().get(Employee.class, id);
+    }
+
+    @Override
+    public List<Employee> getAll() {
+        return null;
     }
 }

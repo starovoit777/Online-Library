@@ -20,9 +20,6 @@ public class MainController {
         return "index";
 
     }
-
-
-
 //    @RequestMapping(value = "/", method = RequestMethod.GET)
 //    public String printWelcome(ModelMap model) {
 //        Employee employee = employeeService.getEmployeeById(1);
@@ -30,7 +27,6 @@ public class MainController {
 //        return "login";
 //
 //    }
-
     @RequestMapping(value = "/hello/{name:.+}", method = RequestMethod.GET)
     public ModelAndView hello(@PathVariable("name") String name) {
         ModelAndView model = new ModelAndView();

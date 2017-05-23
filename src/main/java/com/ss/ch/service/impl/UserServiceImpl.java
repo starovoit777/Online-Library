@@ -15,26 +15,37 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserDao userDao ;
+    private UserDao userDao;
 
+    @Override
     public void save(User entity) {
         userDao.save(entity);
     }
 
+    @Override
     public void update(User entity) {
         userDao.update(entity);
     }
 
+    @Override
     public void delete(User entity) {
         userDao.delete(entity);
     }
 
+    @Override
     public User getById(int id) {
-        return  userDao.getById(id);
+        return userDao.getById(id);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDao.getAll();
     }
 
     @Override
     public List<User> findAllUsers() {
-        return  userDao.findAllUsers();
+        return userDao.findAllUsers();
     }
+
+
 }

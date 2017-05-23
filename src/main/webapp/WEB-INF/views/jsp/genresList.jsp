@@ -4,7 +4,7 @@
 
         <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <title>Login</title>
+        <title>Genre List</title>
         <link href="<c:url value='/resources/static/css/bootstrap.css'/>" rel="stylesheet"></link>
         <link href="<c:url value='/resources/static/css/app.css'/>" rel="stylesheet"></link>
         </head>
@@ -13,30 +13,30 @@
         <div class="generic-container">
         <div class="panel panel-default">
         <!-- Default panel contents -->
-        <div class="panel-heading"><span class="lead">List of Users </span></div>
+        <div class="panel-heading"><span class="lead">List of Genre </span></div>
         <table class="table table-hover">
-
+        <thead>
+        <tr>
+        <th>Id</th>
+        <th>Name</th>
+        </tr>
+        </thead>
         <tbody>
-        <form:form action="userCheck" method="post">
-            <td>
-            <br>
-            Enter User Name:<input type="text" name="name"> <br/>
-             <br>
-            Enter Password :<input type="password" name="pwd"/><br/>
-            <br>
-            <input type="submit">
+        <c:forEach items="${genres}" var="genre">
+            <tr>
+            <td>${genre.id}</td>
+            <td>${genre.name}</td>
 
-        </form:form>
+            <td><a href="<c:url value='/edit-genre-${genre.id}'/>" class="btn btn-success custom-width">edit</a></td>
+            <td><a href="<c:url value='/delete-genre-${genre.id}'/>" class="btn btn-danger custom-width">delete</a></td>
+            </tr>
+        </c:forEach>
         </tbody>
         </table>
         </div>
         <div class="well">
-        <a href="<c:url value='/newuser'/>">Register</a>
-        <td>
-        <br>
-        <a href="<c:url value='/'/>">Cancel</a>
+        <a href="<c:url value='/newgenre'/>">Add New genre</a>
         </div>
-
         </div>
         </body>
         </html>
