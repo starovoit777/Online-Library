@@ -32,6 +32,7 @@ public class User {
     private String urlPicture;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "user_role")
     private UserRole userRole;
 
     public User() {

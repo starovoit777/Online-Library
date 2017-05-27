@@ -25,9 +25,6 @@ public class GenreController {
     @Autowired
     MessageSource messageSource;
 
-    /**
-     * This method will list all existing genres.
-     */
     @RequestMapping(value = {"/genres"}, method = RequestMethod.GET)
     public String listGenres(ModelMap model) {
         List<Genre> genres = genreService.getAll();
@@ -36,9 +33,6 @@ public class GenreController {
         return "genresList";
     }
 
-    /**
-     * This method will provide the medium to add a new user.
-     */
     @RequestMapping(value = {"/newgenre"}, method = RequestMethod.GET)
     public String newGenre(ModelMap model) {
         Genre genre = new Genre();
@@ -46,32 +40,20 @@ public class GenreController {
         model.addAttribute("edit", false);
         return "addGenre";
     }
-//
-//    /**
-//     * This method will be called on form submission, handling POST request for
-//     * saving user in database. It also validates the user input
-//     */
+
     @RequestMapping(value = {"/newgenre"}, method = RequestMethod.POST)
     public String saveGenre(Genre genre, BindingResult result,
                            ModelMap model) {
         if (result.hasErrors()) {
             return "newgenre";
         }
-        if (genreService.getById(genre.getId()) != null) {
-            FieldError ssoError = new FieldError("genre", "id", messageSource.getMessage("non.unique.id", new String[]{genre.getName()}, Locale.getDefault()));
-            result.addError(ssoError);
-            return "newgenre";
-        }
+
         genreService.save(genre);
         model.addAttribute("success", "Genre " + genre.getName() + " "  + " add successfully");
         //return "success";
         return "registrationsuccess";
     }
 
-
-    /**
-     * This method will provide the medium to update an existing user.
-     */
     @RequestMapping(value = {"/edit-genre-{id}"}, method = RequestMethod.GET)
     public String editGenre(@PathVariable int id, ModelMap model) {
         Genre genre = genreService.getById(id);
@@ -80,10 +62,6 @@ public class GenreController {
         return "addGenre";
     }
 
-    /**
-     * This method will be called on form submission, handling POST request for
-     * updating user in database. It also validates the user input
-     */
     @RequestMapping(value = {"/edit-genre-{id}"}, method = RequestMethod.POST)
     public String updateGenre(Genre genre, BindingResult result,
                              ModelMap model, @PathVariable int id) {
@@ -95,9 +73,6 @@ public class GenreController {
         return "registrationsuccess";
     }
 
-    /**
-     * This method will delete an user by it's SSOID value.
-     */
     @RequestMapping(value = {"/delete-genre-{id}"}, method = RequestMethod.GET)
     public String deleteGenre(@PathVariable int id) {
         genreService.delete(genreService.getById(id));

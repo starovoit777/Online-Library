@@ -7,7 +7,9 @@ import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,6 +49,6 @@ public class AuthorDaoImpl extends HibernateDaoSupport implements AuthorDao {
     public List<Author> getAll() {
         List<Author> authors;
         authors = (List<Author>) this.getHibernateTemplate().find("from Author");
-        return authors;
+        return (CollectionUtils.isEmpty(authors)) ? new ArrayList<>() : authors;
     }
 }

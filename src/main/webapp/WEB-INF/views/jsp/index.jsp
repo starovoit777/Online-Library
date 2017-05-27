@@ -34,12 +34,16 @@
         <body>
 
         <div class="navbar">
-        <a href="#home">Home</a>
-        <a href="#autors">Autors</a>
-        <a href="#books">Books</a>
+        <a href="/">Home</a>
+        <a href="authors">Authors</a>
+        <a href="books">Books</a>
         <a href="#serth">Serth</a>
         <a href="login">Login</a>
         <a href="users">User list</a>
+        <a href="genres">Genre list</a>
+        <a href="comments">Comment list</a>
+
+
         </div>
 
         <div class="main">

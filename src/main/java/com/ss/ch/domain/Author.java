@@ -26,6 +26,7 @@ public class Author implements Comparable<Author> ,Serializable {
     private String penName;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "RATING")
     private StarRating rating;
 
     @Column(name = "URL_PICTURE", length = 100)

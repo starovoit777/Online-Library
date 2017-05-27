@@ -18,28 +18,29 @@
         <thead>
         <tr>
         <th>Id</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>EMail</th>
-
+        <th>UserName</th>
+        <th>Date of ctreate</th>
+        <th>Comment</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${comments}" var="comment">
             <tr>
-            <td>${user.id}</td>
-            <td>${user.name}</td>
-            <td>${user.surname}</td>
-            <td>${user.eMail}</td>
-            <td><a href="<c:url value='/edit-user-${user.id}'/>" class="btn btn-success custom-width">edit</a></td>
-            <td><a href="<c:url value='/delete-user-${user.id}'/>" class="btn btn-danger custom-width">delete</a></td>
+            <td>${comment.id}</td>
+            <td>${comment.user.name}</td>
+            <td>${comment.createdDate}</td>
+            <td>${comment.comment}</td>
+            <td><a href="<c:url value='/edit-comment-${comment.id}'/>" class="btn btn-success
+            custom-width">edit</a></td>
+            <td><a href="<c:url value='/delete-comment-${comment.id}'/>" class="btn btn-danger
+            custom-width">delete</a></td>
             </tr>
         </c:forEach>
         </tbody>
         </table>
         </div>
         <div class="well">
-        <a href="<c:url value='/newuser'/>">Add new comment</a>
+        <a href="<c:url value='/newComment'/>">Add new comment</a>
         </div>
         </div>
         </body>

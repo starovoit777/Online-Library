@@ -58,11 +58,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "registration";
         }
-        if (userService.getById(user.getId()) != null) {
-            FieldError ssoError = new FieldError("user", "id", messageSource.getMessage("non.unique.id", new String[]{user.getName()}, Locale.getDefault()));
-            result.addError(ssoError);
-            return "registration";
-        }
+
         userService.save(user);
         model.addAttribute("success", "User " + user.getName() + " " + user.getSurname() + " registered successfully");
         //return "success";

@@ -17,10 +17,10 @@ import java.util.List;
 @Repository
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class GenreDaoImpl extends HibernateDaoSupport implements GenreDao {
+
     public GenreDaoImpl(SessionFactory sessionfactory) {
         setSessionFactory(sessionfactory);
     }
-
 
     @Override
     public void save(Genre entity) {

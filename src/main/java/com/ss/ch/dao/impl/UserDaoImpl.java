@@ -21,7 +21,6 @@ import java.util.List;
 @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
 public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 
-
     public UserDaoImpl(SessionFactory sessionfactory) {
         setSessionFactory(sessionfactory);
     }
