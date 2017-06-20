@@ -27,8 +27,8 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
 				<prop key="hibernate.connection_pool_size">1</prop>
-				<prop key="hibernate.hbm2ddl.auto">update</prop>
-				<prop key="hibernate.connection.autocommit ">false</prop>
+				<prop key="hibernate.hbm2ddl.auto">false</prop>
+				<prop key="hibernate.connection.autocommit">true</prop>
 				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
@@ -40,12 +40,10 @@
 	</bean>
 
 
-
 	<bean id="employeeDAO" class="com.ss.ch.dao.impl.EmployeeDAOImpl">
 		<constructor-arg ref="sessionFactory" />
 	</bean>
 	<bean id="employeeService" class="com.ss.ch.service.impl.EmployeeServiceImpl" />
-
 
 	<bean id="genreDao" class="com.ss.ch.dao.impl.GenreDaoImpl">
 		<constructor-arg ref="sessionFactory" />

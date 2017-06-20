@@ -1,5 +1,7 @@
 package com.ss.ch.service;
 
+import java.util.List;
+
 /**
  * Created by Serhii Starovoit on 3/15/2017  in  3:56 PM .
  */
@@ -15,4 +17,5 @@ public interface CrudService<E> {
 
     E getById(int id);
 
+    List<E> getAll();
 }

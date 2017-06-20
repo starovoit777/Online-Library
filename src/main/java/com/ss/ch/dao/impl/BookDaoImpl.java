@@ -2,11 +2,14 @@ package com.ss.ch.dao.impl;
 
 import com.ss.ch.dao.BookDao;
 import com.ss.ch.domain.Book;
+import com.ss.ch.domain.Comment;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Micro on 4/24/2017.
@@ -40,5 +43,12 @@ public class BookDaoImpl extends HibernateDaoSupport implements BookDao {
     @Override
     public Book getById(int id) {
         return getHibernateTemplate().get(Book.class, id);
+    }
+
+    @Override
+    public List<Book> getAll() {
+        List<Book> books;
+        books = (List<Book>) this.getHibernateTemplate().find("from Book");
+        return books;
     }
 }

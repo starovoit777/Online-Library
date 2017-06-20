@@ -11,6 +11,7 @@ import java.util.Set;
 @Entity
 @Table(name="Book")
 public class Book implements Comparable<Book>, Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOOK_ID")
@@ -20,6 +21,7 @@ public class Book implements Comparable<Book>, Serializable {
     private String title;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "RATING")
     private StarRating rating;
 
     @Column(name = "DESCRIPTION", length = 500)
@@ -39,12 +41,9 @@ public class Book implements Comparable<Book>, Serializable {
     @OneToOne(targetEntity = Genre.class)
     private Genre genre;
 
-
     @ManyToMany(cascade= CascadeType.ALL)
     @JoinTable(name="`author_book`", joinColumns=@JoinColumn(name="AUTHOR_ID"), inverseJoinColumns=@JoinColumn(name="BOOK_ID"))
     private Set<Author> authors;
-
-
 
     public Book() {
     }

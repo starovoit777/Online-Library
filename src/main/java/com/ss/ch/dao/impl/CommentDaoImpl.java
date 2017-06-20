@@ -2,11 +2,14 @@ package com.ss.ch.dao.impl;
 
 import com.ss.ch.dao.CommentDao;
 import com.ss.ch.domain.Comment;
+import com.ss.ch.domain.User;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Micro on 4/24/2017.
@@ -38,5 +41,12 @@ public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao {
     @Override
     public Comment getById(int id) {
         return getHibernateTemplate().get(Comment.class, id);
+    }
+
+    @Override
+    public List<Comment> getAll() {
+        List<Comment> comments;
+        comments = (List<Comment>) this.getHibernateTemplate().find("from Comment");
+        return comments;
     }
 }
