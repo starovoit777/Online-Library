@@ -2,7 +2,6 @@ package com.ss.ch.dao.impl;
 
 import com.ss.ch.dao.BookDao;
 import com.ss.ch.domain.Book;
-import com.ss.ch.domain.Comment;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;

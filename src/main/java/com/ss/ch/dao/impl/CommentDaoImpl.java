@@ -2,51 +2,51 @@ package com.ss.ch.dao.impl;
 
 import com.ss.ch.dao.CommentDao;
 import com.ss.ch.domain.Comment;
-import com.ss.ch.domain.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-/**
- * Created by Micro on 4/24/2017.
- */
-
 @Repository
-@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-public class CommentDaoImpl extends HibernateDaoSupport implements CommentDao {
+@Transactional
+public class CommentDaoImpl implements CommentDao {
 
-    public CommentDaoImpl(SessionFactory sessionfactory) {
-        setSessionFactory(sessionfactory);
+    private final SessionFactory sessionFactory;
+
+    public CommentDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     @Override
     public void save(Comment entity) {
-        getHibernateTemplate().save(entity);
+        getSession().save(entity);
     }
 
     @Override
     public void update(Comment entity) {
-        getHibernateTemplate().update(entity);
+        getSession().update(entity);
     }
 
     @Override
     public void delete(Comment entity) {
-        getHibernateTemplate().delete(entity);
+        getSession().delete(entity);
     }
 
     @Override
     public Comment getById(int id) {
-        return getHibernateTemplate().get(Comment.class, id);
+        return getSession().get(Comment.class, id);
     }
 
     @Override
     public List<Comment> getAll() {
-        List<Comment> comments;
-        comments = (List<Comment>) this.getHibernateTemplate().find("from Comment");
-        return comments;
+        return getSession()
+                .createQuery("FROM Comment", Comment.class)
+                .getResultList();
     }
 }

@@ -1,57 +1,63 @@
 package com.ss.ch.dao.impl;
 
-
 import com.ss.ch.dao.EmployeeDAO;
 import com.ss.ch.domain.Employee;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-public class EmployeeDAOImpl extends HibernateDaoSupport implements EmployeeDAO {
+@Transactional
+public class EmployeeDAOImpl implements EmployeeDAO {
 
-    public EmployeeDAOImpl(SessionFactory sessionfactory){
-        setSessionFactory(sessionfactory);
+    private final SessionFactory sessionFactory;
+
+    public EmployeeDAOImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    private Session getSession() {
+        return sessionFactory.getCurrentSession();
     }
 
     @Override
     public int createEmployee(Employee emp) {
-        getHibernateTemplate().persist(emp);
+        getSession().persist(emp);
         return emp.getId();
     }
 
     @Override
     public Employee getEmployeeById(int id) {
-        return getHibernateTemplate().get(Employee.class, id);
+        return getSession().get(Employee.class, id);
     }
 
     @Override
     public void save(Employee entity) {
-        getHibernateTemplate().save(entity);
+        getSession().save(entity);
     }
 
     @Override
     public void update(Employee entity) {
-        getHibernateTemplate().update(entity);
+        getSession().update(entity);
     }
 
     @Override
     public void delete(Employee entity) {
-        getHibernateTemplate().delete(entity);
+        getSession().delete(entity);
     }
 
     @Override
     public Employee getById(int id) {
-        return getHibernateTemplate().get(Employee.class, id);
+        return getSession().get(Employee.class, id);
     }
 
     @Override
     public List<Employee> getAll() {
-        return null;
+        return getSession()
+                .createQuery("FROM Employee", Employee.class)
+                .getResultList();
     }
 }
